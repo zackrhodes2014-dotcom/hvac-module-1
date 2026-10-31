@@ -1,7 +1,7 @@
-/* Service worker for HVAC Module 1 (module-01-app.html).
+/* Service worker for HVAC Module 1 (index.html).
    Must sit in the same folder as the page and be served over HTTPS (or from localhost). */
 var CACHE = "hvac-m1-shell-v1";
-var SHELL = ["./module-01-app.html", "./", "./sw.js"];
+var SHELL = ["./index.html", "./", "./sw.js"];
 
 self.addEventListener("install", function (event) {
   event.waitUntil(
@@ -58,7 +58,7 @@ self.addEventListener("fetch", function (event) {
       if (cached) return cached;
       return network.catch(function () {
         if (req.mode === "navigate") {
-          return cache.match("./module-01-app.html").then(function (r) {
+          return cache.match("./index.html").then(function (r) {
             return r || new Response("Offline and this page isn't cached yet.", { status: 503, headers: { "Content-Type": "text/plain" } });
           });
         }
